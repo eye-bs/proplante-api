@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const allLandRoutes = require("./api/routes/allLandRoutes");
+const ownersRoutes = require("./api/routes/ownersRoutes");
 
 mongoose.connect(
     "mongodb+srv://admin:admin123@cluster0-odrr2.gcp.mongodb.net/Proplante?retryWrites=true&w=majority",
@@ -34,10 +34,10 @@ app.use((req, res, next) => {
 // makes 'uploads' folder to public
 app.use(express.static('uploads'))
 
-app.use("/lands" , allLandRoutes);
+app.use("/owner" , ownersRoutes);
 
 app.use((req, res, next) => {
-    const error = new Error("Not found");
+    const error = new Error("Not found!!");
     error.status = 404;
     next(error);
   });
