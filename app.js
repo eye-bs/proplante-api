@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const ownersRoutes = require("./api/routes/ownersRoutes");
+const registerOwnersRoutes = require("./api/routes/registerOwnerRoutes");
+const registerManagersRoutes = require("./api/routes/registerManagerRoutes");
+const loginOwnersRoutes = require("./api/routes/loginOwnerRoutes");
+const loginManagersRoutes = require("./api/routes/loginManagerRoutes");
 
 mongoose.connect(
     "mongodb+srv://admin:admin123@cluster0-odrr2.gcp.mongodb.net/Proplante?retryWrites=true&w=majority",
@@ -35,6 +39,10 @@ app.use((req, res, next) => {
 app.use(express.static('uploads'))
 
 app.use("/owner" , ownersRoutes);
+app.use("/owner/register" , registerOwnersRoutes);
+app.use("/owner/login", loginOwnersRoutes);
+app.use("/manager/login", loginManagersRoutes);
+app.use("/manager/register", registerManagersRoutes);
 
 app.use((req, res, next) => {
     const error = new Error("Not found!!");

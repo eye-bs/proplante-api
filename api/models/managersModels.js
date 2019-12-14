@@ -1,0 +1,19 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+
+var managerSchema = new Schema({
+  _id: String,
+  owner_id: String,
+  managers: [{
+    id: String,
+    name: String,
+    image: String,
+    contact_info: {
+      address: String,
+      phone: String
+    }
+  }]
+});
+
+module.exports = mongoose.model('managers' , managerSchema);
