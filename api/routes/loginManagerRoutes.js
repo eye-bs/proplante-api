@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const dataCollection = require("../models/managersModels");
 
 router.post("/", (req, res, next) => {
-  managerId = req.body.id;
+  var managerId = req.body.id;
   dataCollection
     .find()
     .exec()
@@ -23,7 +23,7 @@ router.post("/", (req, res, next) => {
       }
     })
     .catch(err => {
-      res.json({ message: err });
+      res.json({ message: err.message });
     });
 });
 
@@ -37,14 +37,12 @@ function checkManagerCode(docs, managerId) {
         managerData = {
           success: true,
           id: managerId,
-          first_login: firstLogin,
           owner_id: docs[i].owner_id,
           name: managers[j].name,
           image: managers[j].image,
           contact_info: managers[j].contact_info
         };
-      }
-      if (i == docs.length - 1 && j == managers.length - 1) {
+        console.log(managerData);
         return managerData;
       }
     }
@@ -60,16 +58,12 @@ function checkPhoneNumber(docs, managerId){
       var firstLogin = managers[j].name == "" ? true : false;
       if (info.phone == managerId) {
         managerData = {
-          success: true,
           id: managers[j].id,
-          first_login: firstLogin,
           owner_id: docs[i].owner_id,
           name: managers[j].name,
           image: managers[j].image,
           contact_info: managers[j].contact_info
         };
-      }
-      if (i == docs.length - 1 && j == managers.length - 1) {
         return managerData;
       }
     }

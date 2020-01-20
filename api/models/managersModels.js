@@ -6,7 +6,7 @@ var managerSchema = new Schema({
   _id: String,
   owner_id: String,
   managers: [{
-    id: String,
+    _id: String,
     name: String,
     image: String,
     contact_info: {

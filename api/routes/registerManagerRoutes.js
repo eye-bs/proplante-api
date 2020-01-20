@@ -46,10 +46,12 @@ router.post("/", (req, res, next) => {
               if (err) {
                 res.status(500).send({success:false});
               } else {
-                res.status(200).send({success:true});
+                res.status(201).send({ owner_id: docs.owner_id,
+                  manager: managerInfo});
               }
             }
           );
+          break;
         }
       }
     }

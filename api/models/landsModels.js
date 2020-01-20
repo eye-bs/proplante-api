@@ -6,12 +6,12 @@ var landSchema = new Schema({
   _id: String,
   owner_id: String,
   lands: [{
-    land_id: String,
+    _id: String,
     name: String,
     active_status: Boolean,
     province: String,
     district: String,
-    area: String,
+    area:String,
     points: [{
       lat: Number,
       lng: Number
